@@ -3,8 +3,8 @@ from model.entity import Customer
 
 da=DataBaseManager()
 
-# customer = Customer("dorsa", "dorsa","user","password")
-# da.save(customer)
-# print(customer)
+customer = Customer("dorsa", "dorsa","user","password")
+da.save(customer)
+print(customer)
 
 customer=Customer

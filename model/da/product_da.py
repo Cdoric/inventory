@@ -3,7 +3,7 @@ from model.entity import Product
 
 
 class ProductDa(DataBaseManager):
-    def find_by_ID(self, id):
+    def find_by_ID(self, class_name, id):
         self.make_engine()
         result = self.session.query(Product).filter(Product.id == id).all()
         self.session.close()
@@ -16,6 +16,6 @@ class ProductDa(DataBaseManager):
         self.session.close()
         return result
 
-    def remove(self, id):
+    def remove_by_ID(self, id):
         return self.remove_by_id(Product, id)
 

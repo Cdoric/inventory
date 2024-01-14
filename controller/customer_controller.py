@@ -34,8 +34,8 @@ class CustomerController:
     @classmethod
     def find_all(cls):
         try:
-            da = CustomerDa
-            return True, da.find_all()
+            da = CustomerDa()
+            return True, da.find_all(Customer)
         except Exception as e:
             return False, str(e)
 

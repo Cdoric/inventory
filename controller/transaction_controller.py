@@ -13,10 +13,11 @@ class TransactionController:
             return False, str(e)
 
     @classmethod
-    def edit(cls, id, customer, product, date_time, quantity):
+    def edit(cls, id, customer, product, quantity):
         try:
             da = ProductDa()
-            transaction = Transaction(id, customer, data_time=noun)
+            transaction = Transaction(customer, product, quantity)
+            transaction.id = id
             da.edit(transaction)
             return True, transaction
         except Exception as e:
@@ -30,6 +31,14 @@ class TransactionController:
             if transaction:
                 da.remove(transaction)
                 return True
+        except Exception as e:
+            return False, str(e)
+
+    @classmethod
+    def find_all(cls):
+        try:
+            da = TransactionDa()
+            return True, da.find_all(Transaction)
         except Exception as e:
             return False, str(e)
 

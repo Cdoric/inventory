@@ -70,23 +70,43 @@
     </style>
 </head>
 <body>
+<caption>transaction</caption>
 
 <table>
-    <caption>products</caption>
     <tr>
         <th>id</th>
-        <th>name</th>
-        <th>brand</th>
-        <th>price</th>
+        <th>customer_id</th>
+        <th>product_id</th>
+        <th>quantity</th>
+        <th>customer</th>
+        <th>product</th>
     </tr>
+    <tbody>
+    {% for transaction in transaction_list %}
+    <tr>
+        <td>{{transaction.id}}</td>
+        <td>{{transaction.customer_id}}</td>
+        <td>{{transaction.product_id}}</td>
+        <td>{{transaction.quantity}}</td>
+        <td>{{transaction.customer}}</td>
+        <td>{{transaction.product}}</td>
+        <td>
+            <button onclick="remove_transaction({{transaction.id}})">Remove</button>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
 
 </table>
 
 <div class="row justify-content-center">
     <form class="col-6" action="/product" method="post">
-        <input type="text" name="name" placeholder="product name">
-        <input type="text" name="brand" placeholder="product brand">
-        <input type="text" name="price" placeholder="price">
+        <input type="text" name="customer_id" placeholder="customer id">
+        <input type="text" name="product-id" placeholder="product id">
+        <input type="text" name="quantity" placeholder="quantity">
+        <input type="text" name="customer" placeholder="customer">
+        <input type="text" name="product" placeholder="product name">
+
         <input type="submit">
     </form>
 </div>
@@ -102,4 +122,12 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 </body>
+<script>
+    function remove_transaction(id) {
+        fetch("/transaction/" + id, {
+            method: "DELETE"
+        })
+        window.location.replace("/transaction");
+    }
+</script>
 </html>

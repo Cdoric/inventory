@@ -13,10 +13,11 @@ class ProductController:
             return False, str(e)
 
     @classmethod
-    def edit(cls, name, brand, price):  # id?
+    def edit(cls, id, name, brand, price):
         try:
             da = ProductDa()
             product = Product(name, brand, price)
+            product.id = id
             da.edit(product)
             return True, product
         except Exception as e:
@@ -26,10 +27,12 @@ class ProductController:
     def remove(cls, id):
         try:
             da = ProductDa()
-            product = da.find_by_ID(Product, id)
-            if product:
-                da.remove(product)
-                return True
+            da.remove_by_ID(id)
+            # product = da.find_by_ID(Product, id)
+            # print("Product : ",product)
+            # if product:
+            #     da.remove(product)
+            return True
         except Exception as e:
             return False, str(e)
 
@@ -57,5 +60,13 @@ class ProductController:
             da = ProductDa()
             product_list = da.find_by_brand(brand)
             return True, product_list
+        except Exception as e:
+            return False, str(e)
+
+    @classmethod
+    def find_all(cls):
+        try:
+            da = ProductDa()
+            return True, da.find_all(Product)
         except Exception as e:
             return False, str(e)

@@ -18,7 +18,7 @@ class StoreController:
     def edit(cls, id, product, quantity):
         try:
             da = StoreDa()
-            store = Store(id, product, quantity)
+            store = Store(product, quantity )
             da.edit(store)
             return True, store
         except Exception as e:
@@ -32,6 +32,14 @@ class StoreController:
             if product:
                 da.remove(store)
                 return True
+        except Exception as e:
+            return False, str(e)
+
+    @classmethod
+    def find_all(cls):
+        try:
+            da = StoreDa()
+            return True, da.find_all(Store)
         except Exception as e:
             return False, str(e)
 

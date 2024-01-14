@@ -21,4 +21,5 @@ from controller.transaction_controller import TransactionController
 
 # transaction = TransactionController.save(customer, product, 2)
 # print(transaction)
-print(ProductController.save('test','test',15555))
+# print(ProductController.save('test','test',15555))
+print(CustomerController.save('ali','alii','aliiu','pass'))

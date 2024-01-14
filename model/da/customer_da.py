@@ -9,14 +9,8 @@ class CustomerDa(DataBaseManager):
     def remove(self, id):
         return self.remove_by_id(Customer, id)
 
-    def find_all(self):
+    def find_by_name(self):
         self.make_engine()
-        result = self.session.query(Customer).all()
+        result = self.session.query(customer).filter(Customer.name == name)
         self.session.close()
         return result
-
-    def find_by_name(self):
-        pass
-
-    def find_by_family(self):
-        pass
